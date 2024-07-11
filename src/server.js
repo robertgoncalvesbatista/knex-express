@@ -1,13 +1,18 @@
+require("dotenv").config();
+
 const express = require("express");
-const app = express();
+const server = express();
+
+const hostname = process.env.APP_HOST;
+const port = process.env.APP_PORT;
 
 // Parser JSON
-app.use(express.json())
+server.use(express.json());
 
 // Rotas
-app.use("/api", require("./routes/index"));
+server.use("/api", require("./routes"));
 
 // Servidor
-app.listen(8080, () => {
-    console.log("Servidor rodando! http://127.0.0.1:8080");
+server.listen(port, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });

@@ -1,20 +1,20 @@
 module.exports = {
   development: {
-    client: 'mysql2',
+    client: "mysql",
     connection: {
-      host: '127.0.0.1',
-      port: 3306,
-      user: 'root',
-      password: 'pokemon38',
-      database: 'gestao'
+      host: process.env.DATABASE_HOST,
+      port: process.env.DATABASE_PORT,
+      user: "root",
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
     },
     seeds: {
-      directory: './src/database/seeds'
+      directory: "./src/database/seeds",
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './src/database/migrations'
+      tableName: "knex_migrations",
+      directory: "./src/database/migrations",
     },
-    useNullAsDefault: true
-  }
+    useNullAsDefault: true,
+  },
 };

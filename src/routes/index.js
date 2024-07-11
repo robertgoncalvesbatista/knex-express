@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const ClienteController = require("../controllers/ClienteController")
+const ClienteController = require("../controllers/ClienteController");
+
+router.get("/home", (req, res) => {
+  return res.send({
+    message: "Hello wolrd",
+  });
+});
 
 router.get("/cliente", ClienteController.all);
 router.post("/cliente", ClienteController.create);

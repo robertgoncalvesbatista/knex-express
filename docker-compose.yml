@@ -1,0 +1,31 @@
+services:
+  node-knex-api:
+    build: .
+    container_name: node-knex-api
+    ports:
+      - ${APP_PORT}:3000
+    networks:
+      - network_node
+
+  node-knex-mysql:
+    image: mysql:latest
+    container_name: node-knex-mysql
+    ports:
+      - ${DATABASE_PORT}:3306
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - volume_mysql:/var/lib/mysql
+    networks:
+      - network_node
+
+volumes:
+  volume_mysql:
+    driver: local
+
+networks:
+  network_node:
+    driver: bridge

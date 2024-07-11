@@ -1,22 +1,22 @@
 {
-  "dependencies": {
-    "express": "^4.18.2",
-    "knex": "^2.3.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
-  },
-  "name": "cad_cliente",
+  "name": "knex-express",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  },
+  "main": "src/server.js",
+  "keywords": [],
+  "author": "Robert Gonçalves Batista",
+  "license": "ISC",
+  "description": "Estudo de servidor com knex",
   "scripts": {
     "start": "nodemon src/server.js",
     "knex": "knex"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5",
+    "knex": "^3.1.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
