@@ -1,20 +1,61 @@
+// Update with your config settings.
+
+/**
+ * @type { Object.<string, import("knex").Knex.Config> }
+ */
 module.exports = {
   development: {
-    client: "mysql",
+    client: "mysql2",
     connection: {
-      host: process.env.DATABASE_HOST,
-      port: process.env.DATABASE_PORT,
+      host: "node-knex-mysql",
+      port: 3306,
       user: "root",
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+      password: "pokemon38",
+      database: "gestao",
     },
     seeds: {
       directory: "./src/database/seeds",
     },
     migrations: {
-      tableName: "knex_migrations",
+      tableName: "migrations",
       directory: "./src/database/migrations",
     },
     useNullAsDefault: true,
+  },
+
+  staging: {
+    client: "mysql2",
+    connection: {
+      host: "node-knex-mysql",
+      port: 3306,
+      user: "root",
+      password: "pokemon38",
+      database: "gestao",
+    },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      tableName: "migrations",
+    },
+  },
+
+  production: {
+    client: "mysql2",
+    connection: {
+      host: "node-knex-mysql",
+      port: 3306,
+      user: "root",
+      password: "pokemon38",
+      database: "gestao",
+    },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      tableName: "migrations",
+    },
   },
 };

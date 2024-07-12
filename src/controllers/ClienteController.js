@@ -1,9 +1,11 @@
+const db = require("../config/db");
+
 module.exports = {
   async all(req, res) {
     try {
-      const data = await cliente.findAll();
+      const clientes = await db("clientes");
 
-      return res.send(data);
+      res.json(clientes);
     } catch (error) {
       return res.send(error);
     }

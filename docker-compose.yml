@@ -1,15 +1,24 @@
 services:
   node-knex-api:
-    build: .
+    image: node-knex-api:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: node-knex-api
+    restart: unless-stopped
     ports:
       - ${APP_PORT}:3000
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    command: npm run dev
     networks:
       - network_node
 
   node-knex-mysql:
     image: mysql:latest
     container_name: node-knex-mysql
+    restart: unless-stopped
     ports:
       - ${DATABASE_PORT}:3306
     environment:
@@ -18,12 +27,12 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - volume_mysql:/var/lib/mysql
+      - volume_node:/var/lib/mysql
     networks:
       - network_node
 
 volumes:
-  volume_mysql:
+  volume_node:
     driver: local
 
 networks:
