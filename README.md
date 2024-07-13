@@ -1,7 +1,11 @@
-# Knex Node.js
+# API RESTfull
 
-API desenvolvida com express e knex. Este é um estudo de criação de API e containerização do Node e MySQL no Docker.
+Este é um estudo de criação de API RESTfull e containerização no Docker.
 
-## Why?
+## Por quê?
 
-Como forma de estudo, criei este projeto para testar o docker com containers de Node e MySQL.
+Como forma de estudo, criei este projeto para testar meu conhecimento em diversas tecnologias.
+
+## Tecnologias
+
+Express, Docker, Knex, Mocha, MySQL,

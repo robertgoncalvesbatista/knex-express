@@ -1,22 +1,24 @@
 {
   "name": "knex-express",
   "version": "1.0.0",
-  "main": "src/server.js",
+  "main": "src/index.js",
   "keywords": [],
   "author": "Robert Gonçalves Batista",
   "license": "ISC",
-  "description": "Estudo de servidor com knex",
+  "type": "module",
+  "description": "Este é um estudo de criação de API RESTfull e containerização no Docker",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "start": "node --env-file=.env src/index.js",
+    "dev:start": "node --env-file=.env --watch src/index.js",
+    "test": "APP_HOST='127.0.0.1' APP_PORT=3030 mocha",
+    "dev:test": "APP_HOST='127.0.0.1' APP_PORT=3030 mocha --watch"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "chai": "^5.1.1",
     "express": "^4.19.2",
     "knex": "^3.1.0",
-    "mysql2": "^3.10.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.4"
+    "mocha": "^10.6.0",
+    "mysql2": "^3.10.2",
+    "supertest": "^7.0.0"
   }
 }
