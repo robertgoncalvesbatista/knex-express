@@ -1,7 +1,7 @@
 import request from "supertest";
 import { expect } from "chai";
 
-import app from "../../main/server";
+import app from "../../main/server.js";
 
 describe("GET /api", function () {
   it("responds with json", function (done) {
