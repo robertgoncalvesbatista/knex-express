@@ -1,4 +1,4 @@
-import Database from "../config/Database.js";
+import Database from "../../config/Database.js";
 
 class Controller {
   constructor() {

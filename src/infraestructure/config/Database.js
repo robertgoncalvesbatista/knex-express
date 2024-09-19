@@ -1,6 +1,6 @@
 import knex from "knex";
 
-import knexFile from "../../knexfile.js";
+import knexFile from "../../../knexfile.js";
 
 class Database {
   constructor() {

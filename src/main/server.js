@@ -1,7 +1,9 @@
 import express from "express";
 
-import ErrorHandler from "./config/ErrorHandler.js";
-import Router from "./config/Router.js";
+import ErrorHandler from "../infraestructure/config/ErrorHandler.js";
+
+import Clientes from "../infraestructure/http/routes/clientes.js";
+import Main from "../infraestructure/http/routes/main.js";
 
 const app = express();
 
@@ -9,7 +11,8 @@ const app = express();
 app.use(express.json());
 
 // Rotas da api
-app.use("/api", Router);
+app.use("/api", Main);
+app.use("/api", Clientes);
 
 // Middleware de tratamento de erros
 app.use(new ErrorHandler().register);
