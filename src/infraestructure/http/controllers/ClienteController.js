@@ -1,10 +1,11 @@
 import CreateClienteDTO from "../../../application/dtos/CreateClienteDTO.js";
 import CreateCliente from "../../../application/use_cases/CreateCliente.js";
 
-import Controller from "./Controller.js";
+import ClienteRepository from "../../database/repositories/ClienteRepository.js";
+
 import Database from "../../config/Database.js";
 
-import ClienteRepository from "../../database/repositories/ClienteRepository.js";
+import Controller from "./Controller.js";
 
 const clienteRepository = new ClienteRepository(new Database());
 
@@ -30,12 +31,6 @@ class ClienteController extends Controller {
       // Instancia o caso de uso e executa a lógica
       const createCliente = new CreateCliente(clienteRepository);
       const result = await createCliente.execute(createClienteDTO);
-
-      // const result = await this.db("clientes").insert({
-      //   name: req.body.name,
-      //   email: req.body.email,
-      //   password: req.body.password,
-      // });
 
       return res.status(202).json(result);
     } catch (error) {

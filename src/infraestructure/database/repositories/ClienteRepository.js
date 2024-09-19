@@ -8,15 +8,18 @@ class ClienteRepository extends IClienteRepository {
   }
 
   async save(user) {
-    // Lógica para salvar o usuário no banco de dados
-    const id = await this.db("clientes").insert(user);
-
-    return await this.db("clientes").where("id", id).first(); // Retorna o usuário salvo
+    // Lógica para salvar o cliente no banco de dados
+    return await this.db("clientes").insert(user); // Retorna o cliente salvo
   }
 
   async findById(clienteId) {
-    // Lógica para buscar um usuário pelo ID
+    // Lógica para buscar um cliente pelo ID
     return await this.db("clientes").where("id", clienteId).first();
+  }
+
+  async findByEmail(email) {
+    // Lógica para buscar um cliente pelo email
+    return await this.db("clientes").where("email", email).first();
   }
 }
 

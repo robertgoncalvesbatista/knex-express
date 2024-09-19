@@ -1,13 +1,8 @@
-import IClienteRepository from "../interfaces/IClienteRepository.js";
+import ClienteService from "../../domain/services/ClienteService.js";
 
 class CreateCliente {
   constructor(clienteRepository) {
-    // Espera um repositório que implemente IClienteRepository
-    if (!(clienteRepository instanceof IClienteRepository)) {
-      throw new Error("clienteRepository deve implementar IClienteRepository");
-    }
-
-    this.clienteRepository = clienteRepository;
+    this.clienteService = new ClienteService(clienteRepository);
   }
 
   async execute(createClienteDTO) {
@@ -20,15 +15,8 @@ class CreateCliente {
       throw new Error("Todos os campos são obrigatórios");
     }
 
-    // Criar entidade de usuário (poderia incluir validação adicional aqui)
-    const user = {
-      name: createClienteDTO.name,
-      email: createClienteDTO.email,
-      password: createClienteDTO.password,
-    };
-
-    // Salvar usuário usando o repositório (infraestrutura desconhecida)
-    return await this.clienteRepository.save(user);
+    // Use o serviço de usuário para criar um novo usuário
+    return await this.clienteService.createCliente(createClienteDTO); // Retorne o usuário criado
   }
 }
 

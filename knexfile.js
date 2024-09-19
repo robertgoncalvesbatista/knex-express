@@ -14,11 +14,11 @@ export default {
       database: "gestao",
     },
     seeds: {
-      directory: "./src/database/seeds",
+      directory: "./src/infraestructure/database/seeds",
     },
     migrations: {
       tableName: "migrations",
-      directory: "./src/database/migrations",
+      directory: "./src/infraestructure/database/migrations",
     },
     useNullAsDefault: true,
   },
