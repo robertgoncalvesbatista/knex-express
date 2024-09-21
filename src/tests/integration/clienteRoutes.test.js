@@ -1,11 +1,17 @@
 import request from "supertest";
-import { expect, use, should } from "chai";
-import chaiHttp from "chai-http";
+import { expect } from "chai";
 
-use(chaiHttp);
-should();
+import Database from "../../infraestructure/config/Database.js";
+import app from "../../main/server.js";
+
+const knex = new Database();
 
 describe("Cliente Routes", () => {
+  before(async function () {
+    // Limpar a tabela antes dos testes
+    await knex("clientes").del();
+  });
+
   // Teste de criação de cliente (POST /cliente)
   describe("POST /api/cliente", () => {
     it("deve criar um novo cliente com sucesso", (done) => {
@@ -15,7 +21,7 @@ describe("Cliente Routes", () => {
         password: "123456",
       };
 
-      request("http://localhost:3000")
+      request(app)
         .post("/api/cliente")
         .send(newCliente)
         .expect(201)
@@ -35,7 +41,7 @@ describe("Cliente Routes", () => {
         password: "123",
       };
 
-      request("http://localhost:3000")
+      request(app)
         .post("/api/cliente")
         .send(invalidCliente)
         .expect(400)
@@ -45,14 +51,31 @@ describe("Cliente Routes", () => {
           done();
         });
     });
+
+    after(async function () {
+      // Limpar a tabela após os testes
+      await knex("clientes").del();
+    });
   });
 
   // Teste de obtenção de cliente (GET /cliente/:id)
   describe("GET /api/cliente/:id", () => {
+    before(async function () {
+      // Limpar a tabela antes dos testes
+      await knex("clientes").del();
+
+      await knex("clientes").insert({
+        id: 1,
+        name: "robert",
+        email: "robert@gmail.com",
+        password: "12345678",
+      });
+    });
+
     it("deve retornar um cliente existente", (done) => {
       const clienteId = 1; // Certifique-se de ter um cliente com esse ID
 
-      request("http://localhost:3000")
+      request(app)
         .get(`/api/cliente/${clienteId}`)
         .expect(200)
         .end((err, res) => {
@@ -66,7 +89,7 @@ describe("Cliente Routes", () => {
     it("deve retornar erro 404 se o cliente não for encontrado", (done) => {
       const nonExistentClienteId = 9999;
 
-      request("http://localhost:3000")
+      request(app)
         .get(`/api/cliente/${nonExistentClienteId}`)
         .expect(404)
         .end((err, res) => {
@@ -77,6 +100,11 @@ describe("Cliente Routes", () => {
           );
           done();
         });
+    });
+
+    after(async function () {
+      // Limpar a tabela após os testes
+      await knex("clientes").del();
     });
   });
 

@@ -22,7 +22,9 @@ const host = process.env.APP_HOST;
 const port = process.env.APP_PORT;
 
 app.listen(port, () => {
-  console.log(`Server running at http://${host}:${port}/`);
+  if (!process.env.NODE_ENV) {
+    console.log(`Server running at http://${host}:${port}/`);
+  }
 });
 
 export default app;

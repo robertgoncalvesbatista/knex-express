@@ -7,77 +7,76 @@ export default {
   // Development
   development: {
     client: "mysql2",
+    useNullAsDefault: true,
     connection: {
-      host: "node-knex-mysql",
+      host: "172.19.0.3",
       port: 3306,
       user: "root",
-      password: "123456",
-      database: "gestao",
+      password: "password",
+      database: "knex-express",
     },
     seeds: {
       directory: "./src/infraestructure/database/seeds",
     },
     migrations: {
-      tableName: "migrations",
       directory: "./src/infraestructure/database/migrations",
     },
-    useNullAsDefault: true,
   },
 
   // Staging
   staging: {
     client: "mysql2",
+    useNullAsDefault: true,
     connection: {
-      host: "node-knex-mysql",
+      host: "172.19.0.3",
       port: 3306,
       user: "root",
-      password: "123456",
-      database: "gestao",
+      password: "password",
+      database: "knex-express",
     },
-    pool: {
-      min: 2,
-      max: 10,
+    seeds: {
+      directory: "./src/infraestructure/database/seeds",
     },
     migrations: {
-      tableName: "migrations",
+      directory: "./src/infraestructure/database/migrations",
     },
   },
 
   // Production
   production: {
     client: "mysql2",
+    useNullAsDefault: true,
     connection: {
-      host: "node-knex-mysql",
+      host: "172.19.0.3",
       port: 3306,
       user: "root",
-      password: "123456",
-      database: "gestao",
+      password: "password",
+      database: "knex-express",
     },
-    pool: {
-      min: 2,
-      max: 10,
+    seeds: {
+      directory: "./src/infraestructure/database/seeds",
     },
     migrations: {
-      tableName: "migrations",
+      directory: "./src/infraestructure/database/migrations",
     },
   },
 
   // Testing
   test: {
     client: "mysql2",
+    useNullAsDefault: true,
     connection: {
-      host: "node-knex-mysql",
+      host: "172.19.0.3",
       port: 3306,
       user: "root",
-      password: "123456",
+      password: "password",
       database: "testing",
     },
-    pool: {
-      min: 2,
-      max: 10,
+    seeds: {
+      directory: "./src/infraestructure/database/seeds",
     },
     migrations: {
-      tableName: "migrations",
+      directory: "./src/infraestructure/database/migrations",
     },
   },
 };

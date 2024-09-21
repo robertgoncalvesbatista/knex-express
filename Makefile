@@ -57,7 +57,7 @@ knex@init:
 
 # Executa as migrações
 migrate:
-	$(NODE_CONTAINER) npx knex migrate:latest
+	$(NODE_CONTAINER) npx knex migrate:latest --esm
 
 # Cria uma nova migração
 make@migration:
@@ -70,3 +70,9 @@ seed:
 # Cria um novo seed
 make@seed:
 	$(NODE_CONTAINER) npx knex seed:make $(name)
+
+migrate@rollback:
+	$(NODE_CONTAINER) npx knex migrate:rollback
+
+migrate@test:
+	$(NODE_CONTAINER) npx knex migrate:latest --env test --esm
